@@ -4,6 +4,9 @@
     <!-- shouldn't be valid for java SE per specification, but it works for EclipseLink ... -->
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>au.com.ojitha.blogspot.jpaex1.domain.Employee</class>
+    <class>au.com.ojitha.blogspot.jpaex1.domain.Address</class>
+    <class>au.com.ojitha.blogspot.jpaex1.domain.Contact</class>
+    <class>au.com.ojitha.blogspot.jpaex1.domain.Person</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
