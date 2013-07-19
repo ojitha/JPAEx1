@@ -32,8 +32,7 @@ public class Employee extends Person{
     @Column(name = "EMP_ID")
     private int empId;
 
-    @Embedded
-    private Contact contact;
+
     
     @ManyToOne(cascade={CascadeType.PERSIST})
     @JoinColumn(name="DEPT_ID")
@@ -55,14 +54,6 @@ public class Employee extends Person{
 
     public void setEmpId(int empId) {
         this.empId = empId;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
     }
 
 	public Department getDepartment() {

@@ -4,6 +4,7 @@ import au.com.ojitha.blogspot.jpaex1.domain.Address;
 import au.com.ojitha.blogspot.jpaex1.domain.Asset;
 import au.com.ojitha.blogspot.jpaex1.domain.Contact;
 import au.com.ojitha.blogspot.jpaex1.domain.Department;
+import au.com.ojitha.blogspot.jpaex1.domain.Phone;
 import au.com.ojitha.blogspot.jpaex1.domain.Work;
 
 import java.util.ArrayList;
@@ -175,6 +176,18 @@ public class JpaTest {
                     manager.persist(emp1);
                     manager.persist(emp2);
                     manager.persist(emp3);
+                   
+                    Phone p1 = new Phone();
+                    p1.setPhoneNumber(1234);
+                    Phone p2 = new Phone();
+                    p2.setPhoneNumber(1434);
+                    List<Phone> phones = new ArrayList<Phone>();
+                    phones.add(p1);
+                    phones.add(p2);
+                    emp3.setPhones(phones);
+                    
+                   
+                    
                     employees.add(emp1);
                     employees.add(emp2);
                     employees.add(emp3);

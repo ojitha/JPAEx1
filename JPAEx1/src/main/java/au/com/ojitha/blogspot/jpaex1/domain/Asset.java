@@ -1,6 +1,9 @@
 package au.com.ojitha.blogspot.jpaex1.domain;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,6 +28,12 @@ public class Asset {
 	
 	@Column(name="BUILDING_NO")
 	private int building;
+	
+	@Embedded
+	@AttributeOverrides(value={
+			@AttributeOverride(name="suburb", column=@Column(name="TOWN"))
+	})
+	private Address address;
 
 	public int getAssetNo() {
 		return assetNo;
