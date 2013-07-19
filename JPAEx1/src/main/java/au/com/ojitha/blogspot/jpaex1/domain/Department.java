@@ -1,9 +1,12 @@
 package au.com.ojitha.blogspot.jpaex1.domain;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -24,6 +27,9 @@ public class Department {
 	@Column(name = "DEPT_NAME")
 	private String name;
 
+	@OneToMany(mappedBy="department")
+	private Collection<Employee> employees;
+	
 	public int getDeptId() {
 		return deptId;
 	}
@@ -38,6 +44,14 @@ public class Department {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Collection<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(Collection<Employee> employees) {
+		this.employees = employees;
 	}
 
 }

@@ -1,10 +1,14 @@
 package au.com.ojitha.blogspot.jpaex1.jpa;
 
 import au.com.ojitha.blogspot.jpaex1.domain.Address;
+import au.com.ojitha.blogspot.jpaex1.domain.Asset;
 import au.com.ojitha.blogspot.jpaex1.domain.Contact;
 import au.com.ojitha.blogspot.jpaex1.domain.Department;
+import au.com.ojitha.blogspot.jpaex1.domain.Work;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -29,8 +33,8 @@ public class JpaTest {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
 		EntityManager manager = factory.createEntityManager();
 		JpaTest test = new JpaTest(manager);
-		List<Employee> emps=null;
 		EntityTransaction tx = manager.getTransaction();
+		List<Employee> emps=null;
 		tx.begin();
 		try {
 			emps = test.createEmployees();
@@ -41,6 +45,44 @@ public class JpaTest {
 		for (Employee employee : emps) {
 			System.out.println("Id : "+ employee.getEmpId());
 		}
+		
+//		tx.begin();
+//		Employee e = manager.find(Employee.class, 2);
+//		Asset a = e.getAsset();
+//		System.out.println(a.getEmployee().getEmpId());
+//		tx.commit();
+
+//		tx.begin();
+//		Asset a = manager.find(Asset.class, 2);
+//		Employee e = a.getEmployee();
+//		System.out.println(e.getEmpId());
+		
+		
+//		System.out.println(a.getEmployee().getEmpId());
+//		tx.commit();
+
+//		tx.begin();
+//		Employee e = manager.find(Employee.class, 2);
+//		Department d = e.getDepartment();
+//		Collection<Employee> employees = d.getEmployees();
+//		for (Employee employee : employees) {
+//			System.out.println(employee.getEmpId());
+//		}
+//		tx.commit();
+		
+//		tx.begin();
+//		Department d = manager.find(Department.class, 1);
+//		Collection<Employee> employees = d.getEmployees();
+//		for (Employee employee : employees) {
+//			System.out.println(employee.getEmpId());
+//		}
+//		
+//		tx.commit();
+		
+//		tx.begin();
+//			test.addWork();
+//		tx.commit();
+		
 
 		System.out.println(".. done");
 	}
@@ -55,6 +97,33 @@ public class JpaTest {
 				dept = new Department();
 				dept.setName("Admin");
 			}
+			
+			Work w1 = new Work();
+			w1.setStartDate(new Date());
+			w1.setDescription("work-1");
+			
+			Work w2 = new Work();
+			w2.setStartDate(new Date());
+			w2.setDescription("work-2");
+			
+			Work w3 = new Work();
+			w3.setStartDate(new Date());
+			w3.setDescription("work-3");
+			
+			List<Work> work1_2 = new ArrayList<Work>();
+			work1_2.add(w1);
+			work1_2.add(w2);
+			
+			List<Work> work2_3 = new ArrayList<Work>();
+			work2_3.add(w2);
+			work2_3.add(w3);
+			
+			List<Work> work3 = new ArrayList<Work>();
+			work3.add(w3);
+			
+
+
+				
                     Address addr1 = new Address();
                     addr1.setStreet("13 SummerLane");
                     addr1.setSuburb("Murrable");
@@ -66,7 +135,10 @@ public class JpaTest {
                     emp1.setLastName("Mark");
                     emp1.setDepartment(dept);
                     emp1.setContact(cont1);
-
+                    Asset a1 = new Asset();
+                    a1.setBuilding(1);
+                    emp1.setAsset(a1);
+                    emp1.setWorks(work1_2);
                     
                     Address addr2 = new Address();
                     addr2.setStreet("13 Mary bay");
@@ -79,7 +151,10 @@ public class JpaTest {
                     emp2.setLastName("Juliat");
                     emp2.setDepartment(dept);
                     emp2.setContact(cont2);
-                    
+                    Asset a2 = new Asset();
+                    a2.setBuilding(2);
+                    emp2.setAsset(a2);
+                    emp2.setWorks(work2_3);
                     Department dept3 = new Department();
                     dept3.setName("payroll");
                     Address addr3 = new Address();
@@ -93,7 +168,10 @@ public class JpaTest {
                     emp3.setLastName("Saki");
                     emp3.setDepartment(dept3);
                     emp3.setContact(cont2);
-                    
+                    Asset a3 = new Asset();
+                    a3.setBuilding(3);
+                    emp3.setAsset(a3);
+                    emp3.setWorks(work3);
                     manager.persist(emp1);
                     manager.persist(emp2);
                     manager.persist(emp3);
@@ -101,7 +179,10 @@ public class JpaTest {
                     employees.add(emp2);
                     employees.add(emp3);
                     
+                   
                     
 		return employees;
 	}
+	
+
 }

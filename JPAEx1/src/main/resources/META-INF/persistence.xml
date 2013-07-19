@@ -8,6 +8,8 @@
     <class>au.com.ojitha.blogspot.jpaex1.domain.Contact</class>
     <class>au.com.ojitha.blogspot.jpaex1.domain.Person</class>
     <class>au.com.ojitha.blogspot.jpaex1.domain.Department</class>
+    <class>au.com.ojitha.blogspot.jpaex1.domain.Asset</class>
+    <class>au.com.ojitha.blogspot.jpaex1.domain.Work</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
