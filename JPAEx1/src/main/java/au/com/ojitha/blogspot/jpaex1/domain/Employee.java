@@ -3,7 +3,9 @@ package au.com.ojitha.blogspot.jpaex1.domain;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
 
@@ -31,8 +34,6 @@ public class Employee extends Person{
     @GeneratedValue(generator="empId_Gen")
     @Column(name = "EMP_ID")
     private int empId;
-
-
     
     @ManyToOne(cascade={CascadeType.PERSIST})
     @JoinColumn(name="DEPT_ID")
@@ -47,6 +48,16 @@ public class Employee extends Person{
     	joinColumns=@JoinColumn(name="LINK_EMP_ID"),
     	inverseJoinColumns=@JoinColumn(name="LINK_WORK_ID" )	)
     private Collection<Work> works;
+
+ 
+    @ElementCollection
+    @CollectionTable(
+    		name="PER_EMP_LEAVE", 
+    		joinColumns=@JoinColumn(name="EMP_ID"))
+    private Collection<Leave> leaves;
+    
+    @ManyToOne(cascade={CascadeType.PERSIST})
+    private Welfare welfare;
     
     public int getEmpId() {
         return empId;
@@ -78,6 +89,14 @@ public class Employee extends Person{
 
 	public void setWorks(Collection<Work> works) {
 		this.works = works;
+	}
+
+	public Collection<Leave> getLeaves() {
+		return leaves;
+	}
+
+	public void setLeaves(Collection<Leave> leaves) {
+		this.leaves = leaves;
 	}
 	
 	

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -28,6 +29,7 @@ public class Department {
 	private String name;
 
 	@OneToMany(mappedBy="department")
+	@OrderBy("personDetails.firstName ASC")
 	private Collection<Employee> employees;
 	
 	public int getDeptId() {

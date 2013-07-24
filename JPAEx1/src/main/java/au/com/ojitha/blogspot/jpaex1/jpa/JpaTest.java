@@ -4,10 +4,13 @@ import au.com.ojitha.blogspot.jpaex1.domain.Address;
 import au.com.ojitha.blogspot.jpaex1.domain.Asset;
 import au.com.ojitha.blogspot.jpaex1.domain.Contact;
 import au.com.ojitha.blogspot.jpaex1.domain.Department;
+import au.com.ojitha.blogspot.jpaex1.domain.Leave;
+import au.com.ojitha.blogspot.jpaex1.domain.PersonDetails;
 import au.com.ojitha.blogspot.jpaex1.domain.Phone;
 import au.com.ojitha.blogspot.jpaex1.domain.Work;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -132,8 +135,10 @@ public class JpaTest {
                     Contact cont1 = new Contact();
                     cont1.setAddress(addr1);
                     Employee emp1 = new Employee();
-                    emp1.setFirstName("Ojll");
-                    emp1.setLastName("Mark");
+                    PersonDetails d1 = new PersonDetails();
+                    emp1.setPersonDetails(d1);
+                    d1.setFirstName("Ojll");
+                    d1.setLastName("Mark");
                     emp1.setDepartment(dept);
                     emp1.setContact(cont1);
                     Asset a1 = new Asset();
@@ -148,8 +153,10 @@ public class JpaTest {
                     Contact cont2 = new Contact();
                     cont2.setAddress(addr2);
                     Employee emp2 = new Employee();
-                    emp2.setFirstName("Romio");
-                    emp2.setLastName("Juliat");
+                    PersonDetails d2 = new PersonDetails();
+                    d2.setFirstName("Romio");
+                    d2.setLastName("Juliat");
+                    emp2.setPersonDetails(d2);
                     emp2.setDepartment(dept);
                     emp2.setContact(cont2);
                     Asset a2 = new Asset();
@@ -165,8 +172,10 @@ public class JpaTest {
                     Contact cont3 = new Contact();
                     cont3.setAddress(addr3);
                     Employee emp3 = new Employee();
-                    emp3.setFirstName("Kava");
-                    emp3.setLastName("Saki");
+                    PersonDetails d3 = new PersonDetails();
+                    emp3.setPersonDetails(d3);
+                    d3.setFirstName("Kava");
+                    d3.setLastName("Saki");
                     emp3.setDepartment(dept3);
                     emp3.setContact(cont2);
                     Asset a3 = new Asset();
@@ -176,6 +185,19 @@ public class JpaTest {
                     manager.persist(emp1);
                     manager.persist(emp2);
                     manager.persist(emp3);
+                    List<Leave> leaves = new ArrayList<Leave>();
+                    Leave l1 = new Leave();
+                    l1.setStartDate(new Date());
+                    l1.setEndDate(Calendar.getInstance());
+                    Leave l2 = new Leave();
+                    l2.setStartDate(new Date());
+                    l2.setEndDate(Calendar.getInstance());
+                    Leave l3 = new Leave();
+                    l3.setStartDate(new Date());
+                    l3.setEndDate(Calendar.getInstance());
+                    leaves.add(l1); leaves.add(l2); leaves.add(l3);
+                    emp3.setLeaves(leaves);
+
                    
                     Phone p1 = new Phone();
                     p1.setPhoneNumber(1234);

@@ -3,7 +3,6 @@ package au.com.ojitha.blogspot.jpaex1.domain;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
@@ -15,34 +14,17 @@ import javax.persistence.OneToMany;
 @MappedSuperclass
 public class Person {
     
-    @Column(name = "FIRST_NAME")
-    private String firstName;
-    
-    @Column(name = "LAST_NAME")
-    private String lastName;
-    
+
+
     @OneToMany(cascade={CascadeType.PERSIST})
     private Collection<Phone> phones;
 
     @Embedded
     private Contact contact;
     
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
+    @Embedded
+    private PersonDetails personDetails;
+    
 	public Collection<Phone> getPhones() {
 		return phones;
 	}
@@ -58,4 +40,14 @@ public class Person {
     public void setContact(Contact contact) {
         this.contact = contact;
     }
+
+	public PersonDetails getPersonDetails() {
+		return personDetails;
+	}
+
+	public void setPersonDetails(PersonDetails personDetails) {
+		this.personDetails = personDetails;
+	}
+    
+    
 }
